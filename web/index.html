@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123e41">
+  <title>Immune Cell Analysis · Loblaw Bio</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="shell masthead"><span class="brand-mark" aria-hidden="true"></span> Loblaw Bio</div>
+  </header>
+  <main class="shell">
+    <div class="intro">
+      <div><h1>Immune cell analysis</h1><p>Miraclib response and baseline immune profiles in melanoma</p></div>
+      <div class="dataset" id="dataset" aria-live="polite"></div>
+    </div>
+    <nav aria-label="Analysis views">
+      <a href="#response">Response analysis</a>
+      <a href="#frequencies">Sample frequencies</a>
+      <a href="#baseline">Baseline cohort</a>
+    </nav>
+    <p id="status" role="status"></p>
+
+    <section id="response" hidden>
+      <div class="section-head">
+        <div><h2>Responders vs. non-responders</h2><p>Melanoma · Miraclib · PBMC</p></div>
+        <label>Visits <select id="visits"><option value="all">All visits</option><option value="baseline">Baseline only</option></select></label>
+      </div>
+      <div class="metrics" id="response-metrics"></div>
+      <figure class="panel">
+        <figcaption>
+          <div><h3>Relative frequency by population</h3><p id="chart-description"></p></div>
+          <div class="legend"><span class="key yes">Responders</span><span class="key no">Non-responders</span></div>
+        </figcaption>
+        <div id="plot" aria-label="Boxplots by response group"></div>
+        <p class="note" id="box-detail" aria-live="polite">Select a box to see its median, quartiles and whiskers.</p>
+      </figure>
+      <div class="panel">
+        <h3>Statistical comparison</h3>
+        <p class="note" id="significance"></p>
+        <div class="table-scroll" id="stats"></div>
+        <p class="note">Two-sided Mann–Whitney U tests with Holm adjustment across five populations per visit view. The rank-biserial effect is positive when responders tend to have higher frequencies. Individual visit timing and project differences are unadjusted. The results are exploratory associations. Predictive performance requires separate validation.</p>
+      </div>
+    </section>
+
+    <section id="frequencies" hidden>
+      <div class="section-head">
+        <div><h2>Sample frequencies</h2><p>Each percentage uses the sum of the five measured cell counts as its denominator.</p></div>
+        <a class="download" href="relative_frequencies.csv" download>Download CSV</a>
+      </div>
+      <div class="panel">
+        <div class="filters">
+          <label>Sample ID <input id="sample-filter" type="search" placeholder="Search sample ID"></label>
+          <label>Population <select id="population-filter"><option value="">All populations</option></select></label>
+        </div>
+        <div id="frequency-table" class="table-scroll"></div>
+        <div class="pager">
+          <span id="row-count" aria-live="polite"></span>
+          <div><button id="previous" type="button">Previous</button> <button id="next" type="button">Next</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="baseline" hidden>
+      <div class="section-head">
+        <div><h2>Baseline cohort</h2><p>Melanoma · Miraclib · PBMC · Time 0</p></div>
+        <a class="download" href="baseline_samples.csv" download>Download CSV</a>
+      </div>
+      <div id="baseline-metrics" class="metrics"></div>
+      <div class="breakdowns" id="breakdowns"></div>
+      <div class="panel">
+        <h3>Baseline sample inventory</h3>
+        <div class="filters">
+          <label>Project <select id="project-filter"><option value="">All projects</option></select></label>
+        </div>
+        <p class="note" id="baseline-count" aria-live="polite"></p>
+        <div class="table-scroll inventory" id="baseline-table" tabindex="0" aria-label="Baseline sample inventory"></div>
+      </div>
+    </section>
+    <footer>Source data · <a href="https://github.com/pmeraga/loblaw-immune-cell-analysis">GitHub repository</a></footer>
+  </main>
+</body>
+</html>

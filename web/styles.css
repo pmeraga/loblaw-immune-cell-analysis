@@ -1,0 +1,95 @@
+:root {
+  color-scheme: light;
+  --ink: #142e31;
+  --muted: #506569;
+  --teal: #006c63;
+  --line: #d7e4e3;
+  --surface: #fff;
+  --canvas: #f3f8f7;
+  --yes: #00796b;
+  --yes-bg: #b4e3d9;
+  --no: #9a471f;
+  --no-bg: #f5d3bb;
+  font-family: "Aptos", "Segoe UI", system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--canvas);
+}
+* { box-sizing: border-box; }
+body { margin: 0; line-height: 1.45; }
+a { color: var(--teal); }
+[hidden] { display: none !important; }
+.shell { max-width: 1180px; padding-inline: clamp(1rem, 4vw, 3rem); margin-inline: auto; }
+header { background: #123e41; color: white; }
+.masthead { display: flex; align-items: center; gap: .65rem; padding-block: .95rem; font-weight: 700; }
+.brand-mark { width: 1.1rem; aspect-ratio: 1; border: 2px solid #9fe1d2; border-radius: 50%; box-shadow: inset 0 0 0 3px #123e41; background: #9fe1d2; }
+.intro { display: flex; align-items: end; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-block: 2.5rem 1.75rem; }
+h1, h2, h3, p, figure { margin: 0; }
+h1 { font-size: clamp(2.3rem, 6vw, 4.1rem); font-weight: 730; letter-spacing: -.06em; line-height: 1.1; }
+h2 { font-size: clamp(1.6rem, 3vw, 2.15rem); letter-spacing: -.035em; line-height: 1.15; }
+h3 { font-size: 1.17rem; letter-spacing: -.015em; }
+p { color: var(--muted); margin-top: .4rem; }
+.dataset, .note, footer { font-size: .9rem; color: var(--muted); }
+.dataset { font-variant-numeric: tabular-nums; }
+nav { display: flex; flex-wrap: wrap; gap: clamp(.7rem, 3vw, 2rem); border-bottom: 1px solid var(--line); }
+nav a { padding: .75rem 0; text-decoration: none; color: var(--muted); font-size: .94rem; border-bottom: 3px solid transparent; }
+nav a[aria-current="page"] { border-color: var(--teal); font-weight: 700; color: var(--teal); }
+section { padding-top: 1.8rem; }
+.section-head, figcaption, .pager { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .75rem; }
+.section-head { margin-bottom: 1.1rem; }
+.metrics, .breakdowns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .85rem; margin-bottom: 1rem; }
+.metrics.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.panel, .metric { background: var(--surface); border: 1px solid var(--line); border-radius: .8rem; padding: clamp(.85rem, 2vw, 1.35rem); }
+.panel { margin-bottom: 1rem; }
+.breakdowns .panel { margin-bottom: 0; }
+.metric strong { font-size: clamp(1.17rem, 3vw, 1.75rem); display: block; letter-spacing: -.035em; line-height: 1.2; margin-top: .22rem; }
+.metric span { font-size: .9rem; color: var(--muted); }
+.metric.yes { border-top: 3px solid var(--yes); }
+.metric.no { border-top: 3px solid var(--no); }
+.metric.neutral { border-top: 3px solid #77949a; }
+label { display: flex; align-items: center; flex-wrap: wrap; gap: .45rem; color: var(--muted); font-weight: 600; font-size: .9rem; }
+select, input, button, .download { font: inherit; padding: .47rem .68rem; border-radius: .36rem; border: 1px solid #aebfc0; background: white; color: var(--ink); }
+input { max-width: 100%; }
+button:not(:disabled), select { cursor: pointer; }
+button:disabled { opacity: .5; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+.download { display: inline-block; background: var(--teal); color: white; text-decoration: none; font-size: .9rem; font-weight: 650; }
+.legend { display: flex; flex-wrap: wrap; gap: .75rem; }
+.key { display: flex; align-items: center; gap: .35rem; font-size: .87rem; }
+.key::before { content: ""; border: 1px solid var(--series); background: var(--fill); width: .7rem; height: .7rem; border-radius: .2rem; }
+.yes { --series: var(--yes); --fill: var(--yes-bg); }
+.no { --series: var(--no); --fill: var(--no-bg); }
+#plot { margin-top: 1rem; }
+.chart-row, .chart-axis { display: grid; grid-template-columns: clamp(4.8rem, 15vw, 8rem) 1fr; gap: .7rem; align-items: center; }
+.chart-row { border-top: 1px solid var(--line); min-height: 3.2rem; }
+.chart-row strong { font-size: .9rem; }
+.chart-axis { min-height: 1.7rem; color: var(--muted); font-size: .79rem; }
+.ticks { position: relative; height: 1.25rem; margin-inline: .55rem; }
+.ticks span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+.plot-tracks { margin-inline: .55rem; background-image: linear-gradient(to right, var(--line) 1px, transparent 1px); background-size: 16.6667% 100%; border-right: 1px solid var(--line); }
+.track { position: relative; height: 1.2rem; }
+.whisker, .box, .outlier { position: absolute; top: 50%; transform: translateY(-50%); border-color: var(--series); }
+.whisker { border: solid var(--series); border-width: 0 1px; height: .65rem; }
+.whisker::before { position: absolute; content: ""; width: 100%; border-top: 1px solid var(--series); top: 50%; }
+.box { height: .85rem; background: var(--fill); border: 1px solid var(--series); border-radius: .14rem; padding: 0; min-width: 4px; z-index: 1; }
+.median { position: absolute; height: 100%; width: 2px; top: 0; background: var(--series); }
+.outlier { width: .23rem; height: .23rem; border-radius: 50%; background: var(--series); opacity: .65; }
+.table-scroll { overflow: auto; margin-top: .8rem; }
+table { width: 100%; border-collapse: collapse; white-space: nowrap; font-size: .9rem; font-variant-numeric: tabular-nums; }
+th, td { padding: .55rem .58rem; text-align: left; border-bottom: 1px solid var(--line); }
+th { background: #e9f3f1; font-weight: 650; }
+td.number, th.number { text-align: right; }
+td.signal { color: var(--teal); font-weight: 700; }
+tr:hover td { background: #f4faf8; }
+.filters { display: flex; flex-wrap: wrap; gap: .75rem 1rem; margin-top: .4rem; }
+.pager { font-size: .9rem; margin-top: .9rem; }
+.inventory { max-height: 26rem; }
+.inventory th { position: sticky; top: 0; }
+footer { margin: 2rem 0 1.5rem; }
+#status:empty { display: none; }
+@media (max-width: 620px) {
+  .intro { padding-top: 1.8rem; }
+  .breakdowns, .metrics.two { grid-template-columns: 1fr; }
+  .metrics { gap: .4rem; }
+  .metric { padding: .65rem; }
+  .metric span { font-size: .82rem; }
+}
